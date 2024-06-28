@@ -4,6 +4,7 @@ import 'package:ownkey_mobile_test/core/constants.dart';
 import 'package:ownkey_mobile_test/core/models/property.dart';
 import 'package:ownkey_mobile_test/widgets/error_widget.dart';
 import 'package:ownkey_mobile_test/widgets/home_carousel.dart';
+import 'package:ownkey_mobile_test/widgets/location_stack.dart';
 import 'package:ownkey_mobile_test/widgets/property_card.dart';
 
 class HomePage extends StatefulWidget {
@@ -61,21 +62,20 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          // SliverToBoxAdapter(
-          //   child: SingleChildScrollView(
-          //     scrollDirection: Axis.horizontal,
-          //     child: Row(
-          //       children: List.generate(
-          //         5,
-          //         (index) => LocationStack(
-          //           caption: popularLocations[index],
-          //           image: "estates-0${index + 1}.png",
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
-
+          SliverToBoxAdapter(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(
+                  5,
+                  (index) => LocationStack(
+                    caption: popularLocations[index],
+                    image: "estates-0${index + 1}.png",
+                  ),
+                ),
+              ),
+            ),
+          ),
           SliverToBoxAdapter(
             child: Container(
               margin: const EdgeInsets.only(top: 30, bottom: 10),
