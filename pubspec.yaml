@@ -16,7 +16,8 @@ dependencies:
   intl:
   cached_network_image:
   flutter_keyboard_visibility:
-  # flutter_osm_plugin:
+  mockito: ^5.0.16
+  build_runner: 
 
 dev_dependencies:
   flutter_test:
