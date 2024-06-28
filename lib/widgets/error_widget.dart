@@ -30,9 +30,9 @@ class CustomErrorWidget extends StatelessWidget {
           Text(
             message,
             style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+              fontSize: 16,
             ),
+            textAlign: TextAlign.center,
           ),
           const SizedBox(height: 20),
           onTap != null
