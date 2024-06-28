@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:ownkey_mobile_test/features/favorites/favorites.dart';
 import 'package:ownkey_mobile_test/features/home/home.dart';
+import 'package:ownkey_mobile_test/features/search/search_screen.dart';
 
 Color priCol = const Color(0xff022e72);
 
@@ -17,9 +18,7 @@ Color txtCol = const Color(0xff212121);
 
 final kMainPages = [
   const HomePage(),
-  Container(
-    child: const Center(child: Text("Favorites")),
-  ),
+  const SearchScreen(),
   const FavoritesPage(),
   Container(
     child: const Center(child: Text("Account")),

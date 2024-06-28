@@ -15,22 +15,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final propTypes = [
-    "House",
-    "Apartment",
-    "Office",
-    "Land",
-    "TownHouse",
-    "Villa",
-    "Hotel",
-    "Complex",
-    "Lodging",
-    "Duplex",
-    "Event Space",
-    "Single Room",
-    "Family House",
-    "Condo"
-  ];
+
 
   final popularLocations = [
     "East Legon",
@@ -154,30 +139,6 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-// class PropType extends StatelessWidget {
-//   final String caption;
-//   const PropType({
-//     super.key,
-//     required this.caption,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-//       margin: const EdgeInsets.symmetric(horizontal: 5),
-//       decoration: BoxDecoration(
-//         color: Colors.white,
-//         borderRadius: BorderRadius.circular(20),
-//         border: Border.all(
-//           color: priCol,
-//         ),
-//       ),
-//       child: Text(caption),
-//     );
-//   }
-// }
 
 
 
