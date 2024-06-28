@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:ownkey_mobile_test/core/api_client.dart';
 import 'package:ownkey_mobile_test/core/constants.dart';
 import 'package:ownkey_mobile_test/core/models/property.dart';
 import 'package:ownkey_mobile_test/widgets/error_widget.dart';
 import 'package:ownkey_mobile_test/widgets/home_carousel.dart';
-import 'package:ownkey_mobile_test/widgets/location_stack.dart';
 import 'package:ownkey_mobile_test/widgets/property_card.dart';
 
 class HomePage extends StatefulWidget {

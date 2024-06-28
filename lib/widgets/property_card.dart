@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:ownkey_mobile_test/core/constants.dart';
 import 'package:ownkey_mobile_test/core/models/property.dart';
+import 'package:ownkey_mobile_test/features/home/property_page.dart';
 
 class PropertyCard extends StatelessWidget {
   final Property property;
@@ -25,103 +25,158 @@ class PropertyCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 3,
-            offset: const Offset(0, 1),
-          ),
-        ],
-      ),
-      child: Stack(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ClipRRect(
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
-                child: Image.network(
-                  property.images![0],
-                  width: MediaQuery.of(context).size.width,
-                  height: 200,
-                  fit: BoxFit.cover,
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => PropertyScreen(property: property)));
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.grey.withOpacity(0.5),
+          //     spreadRadius: 1,
+          //     blurRadius: 3,
+          //     offset: const Offset(0, 1),
+          //   ),
+          // ],
+        ),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10)),
+                  child: Image.network(
+                    property.images![0],
+                    width: MediaQuery.of(context).size.width,
+                    height: 200,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      property.name!,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        property.name!,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 5),
-                    Row(
-                      children: [
-                        Row(
-                          children: [
-                            const Icon(Icons.location_on_outlined, size: 16),
-                            Text(
-                              " ${property.location?.city ?? property.location?.state}, ${property.location?.country}",
-                              style: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey,
+                      const SizedBox(height: 5),
+                      Row(
+                        children: [
+                          Row(
+                            children: [
+                              const Icon(Icons.location_on_outlined, size: 16),
+                              Text(
+                                " ${property.location?.city ?? property.location?.state}, ${property.location?.country}",
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.grey,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Row(
-                      children: [
-                        AmenityItem(
-                          value: property.propertyAmenities![0].data?.value,
-                          icon: getIcon(
-                              property.propertyAmenities![0].amenity!.name),
-                        ),
-                        const SizedBox(width: 10),
-                        AmenityItem(
-                          value: property.propertyAmenities![1].data?.value,
-                          icon: getIcon(
-                              property.propertyAmenities![1].amenity!.name),
-                        ),
-                        const SizedBox(width: 10),
-                        //TODO: I actually think the data coming from the bathrooms resource should be a number as stated in the meta, but a boolen was specified as the type in the response
-                        // AmenityItem(
-                        //   value: property.propertyAmenities![3].data?.value,
-                        //   icon: getIcon(
-                        //       property.propertyAmenities![3].amenity!.name),
-                        // ),
-                      ],
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      "${property.currency} ${formatCurrency(property.price!)}",
-                      style: const TextStyle(
-                        fontSize: 18,
-                        // color: priCol,
-                        fontWeight: FontWeight.bold,
+                            ],
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 10),
+                      Row(
+                        children: [
+                          AmenityItem(
+                            value: property.propertyAmenities![0].data?.value,
+                            icon: getIcon(
+                                property.propertyAmenities![0].amenity!.name),
+                          ),
+                          const SizedBox(width: 10),
+                          AmenityItem(
+                            value: property.propertyAmenities![1].data?.value,
+                            icon: getIcon(
+                                property.propertyAmenities![1].amenity!.name),
+                          ),
+                          const SizedBox(width: 10),
+                          //TODO: I actually think the data coming from the bathrooms resource should be a number as stated in the meta, but a boolen was specified as the type in the response
+                          // AmenityItem(
+                          //   value: property.propertyAmenities![3].data?.value,
+                          //   icon: getIcon(
+                          //       property.propertyAmenities![3].amenity!.name),
+                          // ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        "${property.currency} ${formatCurrency(property.price!)}",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          // color: priCol,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Positioned(
+              left: 5,
+              top: 5,
+              child: Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text(
+                  property.leasing!,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 12,
+                  ),
                 ),
               ),
-            ],
-          ),
-        ],
+            ),
+            Positioned(
+              left: 80,
+              top: 5,
+              child: Container(
+                padding: const EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(6),
+                ),
+                child: Text(
+                  "${daysBetween(property.createdAt!)} days ago",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            ),
+            Positioned(
+              top: 5,
+              right: 5,
+              child: IconButton(
+                icon: const Icon(
+                  Icons.favorite_border,
+                  color: Colors.white,
+                ),
+                onPressed: () {},
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -132,6 +187,14 @@ class PropertyCard extends StatelessWidget {
       locale: 'en_US',
       // symbol: currency,
     ).format(double.parse(price.toString())).substring(3);
+  }
+
+  // a simple function to calculate the number of days between two dates
+  int daysBetween(String date) {
+    final formattedDate = DateFormat('yyyy-mm-dd').parse(date).toLocal();
+    final difference =
+        DateTime.now().toLocal().difference(formattedDate).inDays;
+    return difference;
   }
 }
 
