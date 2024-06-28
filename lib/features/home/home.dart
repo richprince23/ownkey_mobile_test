@@ -5,6 +5,8 @@ import 'package:ownkey_mobile_test/core/constants.dart';
 import 'package:ownkey_mobile_test/core/models/property.dart';
 import 'package:ownkey_mobile_test/widgets/error_widget.dart';
 import 'package:ownkey_mobile_test/widgets/home_carousel.dart';
+import 'package:ownkey_mobile_test/widgets/location_stack.dart';
+import 'package:ownkey_mobile_test/widgets/property_card.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -61,20 +63,21 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-          SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: List.generate(
-                  5,
-                  (index) => LocationStack(
-                    caption: popularLocations[index],
-                    image: "estates-0${index + 1}.png",
-                  ),
-                ),
-              ),
-            ),
-          ),
+          // SliverToBoxAdapter(
+          //   child: SingleChildScrollView(
+          //     scrollDirection: Axis.horizontal,
+          //     child: Row(
+          //       children: List.generate(
+          //         5,
+          //         (index) => LocationStack(
+          //           caption: popularLocations[index],
+          //           image: "estates-0${index + 1}.png",
+          //         ),
+          //       ),
+          //     ),
+          //   ),
+          // ),
+
           SliverToBoxAdapter(
             child: Container(
               margin: const EdgeInsets.only(top: 30, bottom: 10),
@@ -152,59 +155,6 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-class LocationStack extends StatelessWidget {
-  final String caption;
-  final String image;
-  const LocationStack({
-    super.key,
-    required this.caption,
-    required this.image,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      margin: const EdgeInsets.symmetric(horizontal: 5),
-      // decoration: BoxDecoration(
-      //   color: Colors.white,
-      //   borderRadius: BorderRadius.circular(8),
-      // ),
-      elevation: 4,
-      child: Stack(
-        children: [
-          Image.asset(
-            "assets/images/$image",
-            width: 160,
-            height: 200,
-            fit: BoxFit.cover,
-          ),
-          Container(
-            width: 160,
-            height: 200,
-            padding: EdgeInsets.zero,
-            decoration: BoxDecoration(
-              color: Colors.black.withOpacity(0.5),
-            ),
-          ),
-          Positioned(
-            bottom: 10,
-            left: 10,
-            child: Text(
-              caption,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 // class PropType extends StatelessWidget {
 //   final String caption;
 //   const PropType({
@@ -229,91 +179,6 @@ class LocationStack extends StatelessWidget {
 //   }
 // }
 
-class PropertyCard extends StatelessWidget {
-  final Property property;
-  const PropertyCard({
-    super.key,
-    required this.property,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ClipRRect(
-          borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-          child: Image.network(
-            property.images![0],
-            width: MediaQuery.of(context).size.width,
-            height: 200,
-            fit: BoxFit.cover,
-          ),
-        ),
-        const SizedBox(height: 10),
-        Text(
-          property.name!,
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        const SizedBox(height: 5),
-        Row(
-          children: [
-            Row(
-              children: [
-                Icon(Icons.location_on, color: priCol, size: 16),
-                Text(
-                  " ${property.location?.city}, ${property.location?.country}",
-                  style: const TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        Row(
-          children: [
-            Row(
-              children: [
-                Icon(Icons.king_bed, color: priCol, size: 16),
-                Text(property.propertyAmenities![0].data!.value ?? 0)
-              ],
-            ),
-            const SizedBox(width: 10),
-            Row(
-              children: [
-                Icon(Icons.bathroom, color: priCol, size: 16),
-                Text(property.propertyAmenities![1].data!.value ?? 0)
-              ],
-            ),
-            const SizedBox(width: 10),
-            Row(
-              children: [
-                Icon(Icons.park, color: priCol, size: 16),
-                Text(property.propertyAmenities![2].data!.value.toString())
-              ],
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        Text(
-          "GHS ${property.price}",
-          style: TextStyle(
-            fontSize: 16,
-            color: priCol,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ],
-    );
-  }
-}
 
 
  // SliverToBoxAdapter(

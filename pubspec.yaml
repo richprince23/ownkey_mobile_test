@@ -13,6 +13,8 @@ dependencies:
   provider:
   dio: ^5.4.3+1
   http: 
+  intl:
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

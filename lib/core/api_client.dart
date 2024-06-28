@@ -50,7 +50,7 @@ class PropertyService {
   Future<List<Property>> fetchNewProperties() async {
     try {
       Response response =
-          await _dio.get("https://test.api.ownkey.com.gh/v1/properties/news");
+          await _dio.get("https://test.api.ownkey.com.gh/v1/properties/new");
       if (response.statusCode == 200) {
         print(response.data);
         List<Property> properties = [];
