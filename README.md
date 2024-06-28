@@ -1,3 +1,10 @@
-# ownkey_mobile_test
+# OwnKey Mobile App (test UI)
 
-A new Flutter project.
+ A simple remake of the OwnKey Webapp UI in Flutter
+
+## Getting Started
+
+
+
+## Instalation
+    git clone
