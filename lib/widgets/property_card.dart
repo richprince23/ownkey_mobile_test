@@ -190,10 +190,13 @@ class PropertyCard extends StatelessWidget {
 
   // a simple function to calculate the number of days between two dates
   int daysBetween(String date) {
-    final formattedDate = DateFormat('yyyy-mm-dd').parse(date).toLocal();
-    final difference =
-        DateTime.now().toLocal().difference(formattedDate).inDays;
-    return difference;
+    DateTime dateTime = DateTime.parse(date);
+    DateTime now = DateTime.now();
+    Duration difference = now.difference(dateTime);
+
+    int daysElapsed = difference.inDays;
+
+    return daysElapsed;
   }
 }
 

@@ -20,7 +20,7 @@ final kMainPages = [
   Container(
     child: const Center(child: Text("Favorites")),
   ),
-  FavoritesPage(),
+  const FavoritesPage(),
   Container(
     child: const Center(child: Text("Account")),
   ),

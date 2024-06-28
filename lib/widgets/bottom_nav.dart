@@ -17,8 +17,6 @@ class _BottomNavState extends State<BottomNav> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
-    var size = MediaQuery.of(context).size;
 
     return Container(
       clipBehavior: Clip.antiAlias,

@@ -115,7 +115,9 @@ class _HomePageState extends State<HomePage> {
                 return SliverToBoxAdapter(
                   child: Center(
                     child: CustomErrorWidget(
-                      message: snapshot.error.toString().split(":")[1],
+                      message: snapshot.error.toString().contains(":")
+                          ? snapshot.error.toString().split(":")[1]
+                          : snapshot.error.toString(),
                       // onTap: () {
                       //   setState(() {});
                       // },

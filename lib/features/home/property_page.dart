@@ -161,7 +161,7 @@ class _PropertyScreenState extends State<PropertyScreen> {
                       maxLines: 8,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
                   const Text("Price", style: TextStyle(fontSize: 18)),
                   Text(
                     "${widget.property.currency} ${formatCurrency(widget.property.price!)}",
@@ -171,31 +171,38 @@ class _PropertyScreenState extends State<PropertyScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
                   const Text("Location", style: TextStyle(fontSize: 18)),
                   Text(
-                    "${widget.property.location?.city ?? widget.property.location!.state}, ${widget.property.location!.country}",
+                    "${widget.property.location?.city ?? widget.property.location?.state ?? 'Accra'}, ${widget.property.location!.country}",
                     style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Text(
-                    "Type: ${widget.property.type!.name}",
-                    style: const TextStyle(
+                  const SizedBox(height: 20),
+                  const Text(
+                    "Type",
+                    style: TextStyle(
                       fontSize: 16,
                     ),
                   ),
                   const SizedBox(height: 10),
+                  Text(
+                    widget.property.type!.name,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 20),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Amenities',
+                        'Featured Amenities',
                         style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
                       ),
                       const SizedBox(height: 8.0),
@@ -219,7 +226,7 @@ class _PropertyScreenState extends State<PropertyScreen> {
                               const SizedBox(width: 8.0),
                               Text(
                                 '${amenity.amenity!.name} : ${amenity.data!.value}',
-                                style: const TextStyle(fontSize: 18),
+                                style: const TextStyle(fontSize: 16),
                               ),
                             ],
                           ),

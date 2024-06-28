@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
-import 'package:dio/io.dart';
 import 'package:http/http.dart' as http;
 import 'package:ownkey_mobile_test/core/models/property.dart';
 
@@ -20,12 +18,12 @@ class PropertyService {
 
   void configureDio() {
     // final dio = Dio();
-    (_dio.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
-        (HttpClient client) {
-      client.badCertificateCallback =
-          (X509Certificate cert, String host, int port) => true;
-      return client;
-    };
+    // (_dio.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
+    //     (HttpClient client) {
+    //   client.badCertificateCallback =
+    //       (X509Certificate cert, String host, int port) => true;
+    //   return client;
+    // };
     // Use this dio instance for your requests
   }
 
@@ -41,7 +39,6 @@ class PropertyService {
         throw Exception('Failed to load property');
       }
     } catch (e) {
-      print(e);
       return null;
     }
   }
@@ -77,7 +74,7 @@ class PropertyService {
       } else if (e.type == DioExceptionType.badCertificate) {
         throw Exception('Oops! Something went wrong. It\'s not you, it\'s us.');
       } else {
-        throw Exception('Unexpected error: ${e.message}');
+        throw Exception('Oops! Something went wrong. Please try again');
       }
     } catch (e) {
       throw Exception("Oops! Something went wrong. Please try again");

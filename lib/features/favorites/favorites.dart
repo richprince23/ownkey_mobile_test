@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ownkey_mobile_test/core/constants.dart';
 import 'package:ownkey_mobile_test/core/like_state.dart';
