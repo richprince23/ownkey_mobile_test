@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ownkey_mobile_test/core/models/property.dart';
@@ -55,8 +56,8 @@ class PropertyCard extends StatelessWidget {
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10)),
-                  child: Image.network(
-                    property.images![0],
+                  child: CachedNetworkImage(
+                    imageUrl: property.images![0],
                     width: MediaQuery.of(context).size.width,
                     height: 200,
                     fit: BoxFit.cover,
