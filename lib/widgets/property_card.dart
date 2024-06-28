@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:ownkey_mobile_test/core/like_state.dart';
 import 'package:ownkey_mobile_test/core/models/property.dart';
 import 'package:ownkey_mobile_test/features/home/property_page.dart';
+import 'package:provider/provider.dart';
 
 class PropertyCard extends StatelessWidget {
   final Property property;
@@ -38,14 +40,6 @@ class PropertyCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: Colors.grey.withOpacity(0.5),
-          //     spreadRadius: 1,
-          //     blurRadius: 3,
-          //     offset: const Offset(0, 1),
-          //   ),
-          // ],
         ),
         child: Stack(
           children: [
@@ -107,12 +101,6 @@ class PropertyCard extends StatelessWidget {
                                 property.propertyAmenities![1].amenity!.name),
                           ),
                           const SizedBox(width: 10),
-                          //TODO: I actually think the data coming from the bathrooms resource should be a number as stated in the meta, but a boolen was specified as the type in the response
-                          // AmenityItem(
-                          //   value: property.propertyAmenities![3].data?.value,
-                          //   icon: getIcon(
-                          //       property.propertyAmenities![3].amenity!.name),
-                          // ),
                         ],
                       ),
                       const SizedBox(height: 10),
@@ -168,12 +156,22 @@ class PropertyCard extends StatelessWidget {
             Positioned(
               top: 5,
               right: 5,
-              child: IconButton(
-                icon: const Icon(
-                  Icons.favorite_border,
-                  color: Colors.white,
+              child: Consumer<LikeSate>(
+                builder: (context, value, child) => IconButton(
+                  icon: Icon(
+                    value.isLiked(property)
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: Colors.red,
+                  ),
+                  onPressed: () {
+                    if (value.isLiked(property)) {
+                      value.unlikeProperty(property);
+                    } else {
+                      value.likeProperty(property);
+                    }
+                  },
                 ),
-                onPressed: () {},
               ),
             ),
           ],
